@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
 import SavedList from "./components/SavedList";
 import MovieList from "./components/MovieList";
 import Movie from "./components/Movie";
@@ -15,8 +16,9 @@ function App() {
 
   return (
     <Router>
-      <SavedList list={savedList} />
+      <NavBar />
       <Route exact path="/" component={MovieList} />
+      <SavedList path="/saved" list={savedList} />
       <Route
         path="/movies/:id"
         render={props => <Movie {...props} addToSavedList={addToSavedList} />}
