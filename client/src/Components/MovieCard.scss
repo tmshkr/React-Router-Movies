@@ -8,8 +8,17 @@
   //   position: relative;
   margin: 1rem auto;
 
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
   h2 {
     display: inline-block;
+  }
+
+  div.movie-info {
+    padding-left: 1rem;
   }
 
   button {
