@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import SavedList from "./Components/SavedList";
-import MovieList from "./Components/MovieList";
-import Movie from "./Components/Movie";
+import SavedList from "./components/SavedList";
+import MovieList from "./components/MovieList";
+import Movie from "./components/Movie";
 
 function App() {
   const [savedList, setSavedList] = useState([]);

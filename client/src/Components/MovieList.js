@@ -1,31 +1,14 @@
 import React from "react";
 import MovieCard from "./MovieCard";
+import MoviePoster from "./MoviePoster";
 import movies from "../data/movies";
-// import axios from "axios";
+import "./MovieList.scss";
 
 function MovieList(props) {
-  // const [movies, setMovies] = useState([]);
-
-  // useEffect(() => {
-  //   const getMovies = () => {
-  //     axios
-  //       .get("http://localhost:5000/api/movies")
-  //       .then(response => {
-  //         console.log(response.data);
-  //         setMovies(response.data);
-  //       })
-  //       .catch(error => {
-  //         console.error("Server Error", error);
-  //       });
-  //   };
-
-  //   getMovies();
-  // }, []);
-
   return (
     <div className="movie-list">
-      {movies.map(movie => (
-        <MovieCard {...props} key={movie.imdbID} movie={movie} />
+      {Object.entries(movies).map(([id, movie]) => (
+        <MoviePoster {...props} key={id} movie={movie} />
       ))}
     </div>
   );

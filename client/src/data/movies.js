@@ -1,5 +1,5 @@
-const data = [
-  {
+const data = {
+  tt0068646: {
     Title: "The Godfather",
     Year: "1972",
     Rated: "R",
@@ -33,7 +33,7 @@ const data = [
     Website: "N/A",
     Response: "True"
   },
-  {
+  tt0076759: {
     Title: "Star Wars: Episode IV - A New Hope",
     Year: "1977",
     Rated: "PG",
@@ -66,7 +66,7 @@ const data = [
     Website: "N/A",
     Response: "True"
   },
-  {
+  tt0120737: {
     Title: "The Lord of the Rings: The Fellowship of the Ring",
     Year: "2001",
     Rated: "PG-13",
@@ -100,7 +100,7 @@ const data = [
     Website: "N/A",
     Response: "True"
   },
-  {
+  tt0103064: {
     Title: "Terminator 2: Judgment Day",
     Year: "1991",
     Rated: "R",
@@ -134,7 +134,7 @@ const data = [
     Website: "N/A",
     Response: "True"
   },
-  {
+  tt0109686: {
     Title: "Dumb and Dumber",
     Year: "1994",
     Rated: "PG-13",
@@ -167,7 +167,7 @@ const data = [
     Website: "N/A",
     Response: "True"
   },
-  {
+  tt0108358: {
     Title: "Tombstone",
     Year: "1993",
     Rated: "R",
@@ -200,6 +200,6 @@ const data = [
     Website: "N/A",
     Response: "True"
   }
-];
+};
 
 export default data;

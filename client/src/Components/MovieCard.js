@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Card, CardBody, CardTitle, Button } from "reactstrap";
 import "./MovieCard.scss";
 
 function MovieCard(props) {
@@ -10,17 +11,9 @@ function MovieCard(props) {
   };
 
   return (
-    <div
-      className="movie-card"
-      onClick={() => props.history.push(`/movies/${imdbID}`)}
-    >
+    <Card className="movie-card">
       <div>
-        <h2>{Title}</h2>
-        {props.addToSavedList && (
-          <button type="button" className="btn btn-primary" onClick={saveMovie}>
-            Save
-          </button>
-        )}
+        <h3>{Title}</h3>
       </div>
       <div>
         <img src={Poster} />
@@ -31,11 +24,20 @@ function MovieCard(props) {
           <div className="movie-metascore">
             imdbRating: <strong>{imdbRating}</strong>
           </div>
-          <h3>Actors</h3>
+          <h4>Actors</h4>
           <p>{Actors}</p>
+          {props.addToSavedList && (
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={saveMovie}
+            >
+              Save
+            </button>
+          )}
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
 
