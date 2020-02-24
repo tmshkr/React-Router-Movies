@@ -9,7 +9,7 @@ function MoviePoster(props) {
       onClick={() => props.history.push(`/movies/${imdbID}`)}
     >
       <h3>{Title}</h3>
-      <img src={Poster} />
+      <img src={Poster} alt={Title} />
     </div>
   );
 }

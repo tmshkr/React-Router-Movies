@@ -8,7 +8,7 @@ function SavedList(props) {
 
   return (
     <div className="saved-list">
-      <h3>Saved Movies:</h3>
+      <h3>Saved Movies</h3>
       <div className="home-button">
         <button
           onClick={() => history.push("/")}

@@ -1,5 +1,4 @@
 import React from "react";
-import MovieCard from "./MovieCard";
 import MoviePoster from "./MoviePoster";
 import movies from "../data/movies";
 import "./MovieList.scss";

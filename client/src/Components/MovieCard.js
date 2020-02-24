@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Card, CardBody, CardTitle, Button } from "reactstrap";
+import React from "react";
+import { Card } from "reactstrap";
 import "./MovieCard.scss";
 
 function MovieCard(props) {
@@ -24,7 +24,7 @@ function MovieCard(props) {
         <h3>{Title}</h3>
       </div>
       <div>
-        <img src={Poster} />
+        <img src={Poster} alt={Title} />
         <div className="movie-info">
           <div className="movie-director">
             Director: <em>{Director}</em>
