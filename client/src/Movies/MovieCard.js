@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const MovieCard = props => {
+function MovieCard(props) {
   return;
-};
+}
 
 export default MovieCard;
