@@ -3,11 +3,19 @@ import { Card, CardBody, CardTitle, Button } from "reactstrap";
 import "./MovieCard.scss";
 
 function MovieCard(props) {
-  const { imdbID, Title, Director, imdbRating, Actors, Poster } = props.movie;
-  console.log(props);
+  const {
+    imdbID,
+    Title,
+    Director,
+    imdbRating,
+    Actors,
+    Poster,
+    Plot
+  } = props.movie;
+
   const saveMovie = () => {
     const addToSavedList = props.addToSavedList;
-    addToSavedList(Title);
+    addToSavedList(imdbID);
   };
 
   return (
@@ -26,6 +34,8 @@ function MovieCard(props) {
           </div>
           <h4>Actors</h4>
           <p>{Actors}</p>
+          <h4>Plot</h4>
+          <p>{Plot}</p>
           {props.addToSavedList && (
             <button
               type="button"

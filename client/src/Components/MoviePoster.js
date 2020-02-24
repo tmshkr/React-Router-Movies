@@ -3,7 +3,6 @@ import "./MoviePoster.scss";
 
 function MoviePoster(props) {
   const { imdbID, Title, Poster } = props.movie;
-  console.log(props);
   return (
     <div
       className="movie-poster"

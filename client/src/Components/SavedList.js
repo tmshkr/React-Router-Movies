@@ -1,5 +1,6 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import movies from "../data/movies";
 import "./SavedList.scss";
 
 function SavedList(props) {
@@ -18,9 +19,9 @@ function SavedList(props) {
         </button>
       </div>
       <ul>
-        {props.list.map(title => (
-          <li key={title} className="saved-movie">
-            {title}
+        {props.list.map(imdbID => (
+          <li key={imdbID} className="saved-movie">
+            <Link to={`/movies/${imdbID}`}>{movies[imdbID].Title}</Link>
           </li>
         ))}
       </ul>
