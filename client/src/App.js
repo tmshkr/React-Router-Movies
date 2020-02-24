@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import SavedList from "./components/SavedList";
 import MovieList from "./components/MovieList";
 import Movie from "./components/Movie";
+import "./App.scss";
 
 function App() {
   const [savedList, setSavedList] = useState([]);
@@ -17,12 +18,14 @@ function App() {
   return (
     <Router>
       <NavBar />
-      <Route exact path="/" component={MovieList} />
-      <SavedList path="/saved" list={savedList} />
-      <Route
-        path="/movies/:id"
-        render={props => <Movie {...props} addToSavedList={addToSavedList} />}
-      />
+      <main className="main">
+        <SavedList list={savedList} />
+        <Route exact path="/" component={MovieList} />
+        <Route
+          path="/movies/:id"
+          render={props => <Movie {...props} addToSavedList={addToSavedList} />}
+        />
+      </main>
     </Router>
   );
 }

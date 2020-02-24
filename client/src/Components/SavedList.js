@@ -9,15 +9,6 @@ function SavedList(props) {
   return (
     <div className="saved-list">
       <h3>Saved Movies</h3>
-      <div className="home-button">
-        <button
-          onClick={() => history.push("/")}
-          type="button"
-          className="btn btn-secondary"
-        >
-          Home
-        </button>
-      </div>
       <ul>
         {props.list.map(imdbID => (
           <li key={imdbID} className="saved-movie">

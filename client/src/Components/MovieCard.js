@@ -19,7 +19,7 @@ function MovieCard(props) {
   };
 
   return (
-    <Card className="movie-card">
+    <div className="movie-card">
       <div>
         <h3>{Title}</h3>
       </div>
@@ -47,7 +47,7 @@ function MovieCard(props) {
           )}
         </div>
       </div>
-    </Card>
+    </div>
   );
 }
 

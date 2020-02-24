@@ -1,31 +1,4 @@
 .saved-list {
-  background-color: #fff;
-  border: 0;
-  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
-    0 2px 4px rgba(0, 0, 0, 0.24);
+  color: #fff;
   padding: 1rem;
-  position: relative;
-  margin: 1rem auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-
-  h3 {
-    margin-right: 10px;
-  }
-
-  div.home-button {
-    padding: 1rem;
-    button {
-      float: right;
-    }
-  }
-
-  ul {
-    flex: 0 0 100%;
-    li.saved-movie {
-      margin: 0 10px;
-    }
-  }
 }
