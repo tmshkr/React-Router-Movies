@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import MovieCard from "./MovieCard";
 import axios from "axios";
 
 function MovieList(props) {
@@ -23,32 +24,7 @@ function MovieList(props) {
   return (
     <div className="movie-list">
       {movies.map(movie => (
-        <MovieDetails {...props} key={movie.id} movie={movie} />
-      ))}
-    </div>
-  );
-}
-
-function MovieDetails(props) {
-  const { id, title, director, metascore, stars } = props.movie;
-  return (
-    <div
-      className="movie-card"
-      onClick={() => props.history.push(`/movies/${id}`)}
-    >
-      <h2>{title}</h2>
-      <div className="movie-director">
-        Director: <em>{director}</em>
-      </div>
-      <div className="movie-metascore">
-        Metascore: <strong>{metascore}</strong>
-      </div>
-      <h3>Actors</h3>
-
-      {stars.map(star => (
-        <div key={star} className="movie-star">
-          {star}
-        </div>
+        <MovieCard {...props} key={movie.id} movie={movie} />
       ))}
     </div>
   );
