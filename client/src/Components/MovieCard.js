@@ -13,11 +13,6 @@ function MovieCard(props) {
     Plot
   } = props.movie;
 
-  const saveMovie = () => {
-    const addToSavedList = props.addToSavedList;
-    addToSavedList(imdbID);
-  };
-
   return (
     <div className="movie-card">
       <div>
@@ -38,15 +33,13 @@ function MovieCard(props) {
           <p>{Actors}</p>
           <h4>Plot</h4>
           <p>{Plot}</p>
-          {props.addToSavedList && (
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={saveMovie}
-            >
-              Save
-            </button>
-          )}
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => props.addToSavedList(imdbID)}
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>
