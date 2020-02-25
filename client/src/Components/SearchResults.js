@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Alert } from "reactstrap";
-import { useLocation } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import MovieList from "./MovieList";
 import ReactPaginate from "react-paginate";
 import key from "../config";
@@ -9,14 +9,14 @@ import "./SearchResults.scss";
 
 function SearchResults(props) {
   const location = useLocation();
-  const q = location.search.match(/q=([^&]*)/);
+  const { term, page } = useParams();
+  const history = useHistory();
 
   const [searchResults, setSearchResults] = useState({});
   const [totalResults, setTotalResults] = useState(0);
-  const [currentPage, setPage] = useState(1);
 
-  const handleSearch = str => {
-    const url = `https://www.omdbapi.com/?s=${str}&page=${currentPage}&apikey=${key}`;
+  const handleSearch = (term, page = 1) => {
+    const url = `https://www.omdbapi.com/?s=${term}&page=${page}&apikey=${key}`;
     axios.get(url).then(({ data }) => {
       let filtered;
       if (data.Search) {
@@ -27,14 +27,16 @@ function SearchResults(props) {
     });
   };
 
-  const handlePageClick = ({ selected }) => setPage(selected + 1);
+  const handlePageClick = ({ selected }) => {
+    history.push(`/search/${term}/${selected + 1}`);
+  };
 
   useEffect(() => {
-    if (q && q[1]) {
-      handleSearch(q[1]);
+    if (term) {
+      handleSearch(term, page);
     }
     // eslint-disable-next-line
-  }, [location, currentPage]);
+  }, [location]);
 
   return (
     <div className="search-results">
@@ -50,6 +52,7 @@ function SearchResults(props) {
               breakLabel={"..."}
               breakClassName={"page-item"}
               breakLinkClassName={"page-link"}
+              forcePage={Number(page - 1) || 0}
               pageCount={Math.ceil(totalResults / 10)}
               pageClassName={"page-item"}
               pageLinkClassName={"page-link"}

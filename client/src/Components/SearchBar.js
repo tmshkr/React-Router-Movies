@@ -10,7 +10,7 @@ function SearchBar() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    history.push(`/search?q=${searchText}`);
+    history.push(`/search/${searchText}`);
   };
 
   return (
