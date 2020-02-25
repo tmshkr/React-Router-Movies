@@ -25,6 +25,7 @@ function Movie(props) {
         setMovies(copy);
       });
     }
+    // eslint-disable-next-line
   }, []);
 
   if (error) {

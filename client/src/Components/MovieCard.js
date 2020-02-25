@@ -1,5 +1,4 @@
 import React from "react";
-import { Card } from "reactstrap";
 import "./MovieCard.scss";
 
 function MovieCard(props) {

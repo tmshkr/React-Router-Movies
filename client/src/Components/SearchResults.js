@@ -18,7 +18,6 @@ function SearchResults(props) {
   const handleSearch = str => {
     const url = `https://www.omdbapi.com/?s=${str}&page=${currentPage}&apikey=${key}`;
     axios.get(url).then(({ data }) => {
-      console.log(data);
       let filtered;
       if (data.Search) {
         filtered = data.Search.filter(movie => movie.Poster !== "N/A");
@@ -34,6 +33,7 @@ function SearchResults(props) {
     if (q && q[1]) {
       handleSearch(q[1]);
     }
+    // eslint-disable-next-line
   }, [location, currentPage]);
 
   return (
