@@ -3,7 +3,7 @@ import axios from "axios";
 import { Alert } from "reactstrap";
 import { useLocation } from "react-router-dom";
 import MovieList from "./MovieList";
-import Paginator from "./Paginator";
+import ReactPaginate from "react-paginate";
 import key from "../config";
 import "./SearchResults.scss";
 
@@ -19,16 +19,19 @@ function SearchResults(props) {
     const url = `https://www.omdbapi.com/?s=${str}&page=${currentPage}&apikey=${key}`;
     axios.get(url).then(({ data }) => {
       console.log(data);
-      const filtered = data.Search.filter(movie => movie.Poster !== "N/A");
+      let filtered;
+      if (data.Search) {
+        filtered = data.Search.filter(movie => movie.Poster !== "N/A");
+      }
       setTotalResults(data.totalResults);
       setSearchResults(filtered);
     });
   };
 
+  const handlePageClick = ({ selected }) => setPage(selected + 1);
+
   useEffect(() => {
-    console.log("useEffect fired", Date.now());
     if (q && q[1]) {
-      // console.log(q[1]);
       handleSearch(q[1]);
     }
   }, [location, currentPage]);
@@ -38,10 +41,28 @@ function SearchResults(props) {
       {totalResults > 0 ? (
         <>
           <MovieList movies={searchResults} />
-          <Paginator
-            handlePage={[currentPage, setPage]}
-            totalResults={totalResults}
-          />
+          <nav className="pagination" aria-label="Pagination">
+            <ReactPaginate
+              previousLabel={"‹"}
+              previousClassName={"page-item"}
+              nextLabel={"›"}
+              nextClassName={"page-item"}
+              breakLabel={"..."}
+              breakClassName={"page-item"}
+              breakLinkClassName={"page-link"}
+              pageCount={Math.ceil(totalResults / 10)}
+              pageClassName={"page-item"}
+              pageLinkClassName={"page-link"}
+              previousLinkClassName={"page-link"}
+              nextLinkClassName={"page-link"}
+              marginPagesDisplayed={2}
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              containerClassName={"pagination"}
+              subContainerClassName={"pages pagination"}
+              activeClassName={"active"}
+            />
+          </nav>
         </>
       ) : (
         <Alert color="secondary">

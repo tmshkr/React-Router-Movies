@@ -1,7 +1,21 @@
-div.search-results {
-  color: #fff;
-  //   div.alert {
-  //     color: #fff;
-  //     background-color: transparent;
-  //   }
+// div.search-results {
+//   // color: #fff;
+//   //   div.alert {
+//   //     color: #fff;
+//   //     background-color: transparent;
+//   //   }
+// }
+
+ul.pagination {
+  margin: 3rem auto;
+  user-select: none;
+  a {
+    cursor: pointer;
+    &:hover {
+      color: #007bff;
+    }
+  }
+  li.break {
+    display: none;
+  }
 }
