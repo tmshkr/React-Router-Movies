@@ -67,7 +67,7 @@ function App() {
             <SavedList movies={movies} savedList={savedList} />
           </Route>
           <Route path="/search">
-            <SearchResults movies={movies} />}
+            <SearchResults movies={movies} />
           </Route>
           <Route exact path="/movies">
             <MovieList movies={movies} />
