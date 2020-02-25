@@ -69,21 +69,15 @@ function App() {
           <Route path="/search">
             <SearchResults movies={movies} />}
           </Route>
-          <Route
-            exact
-            path="/movies"
-            render={props => <MovieList {...props} movies={movies} />}
-          />
-          <Route
-            path="/movies/:id"
-            render={props => (
-              <Movie
-                {...props}
-                movies={movies}
-                handleList={[savedList, addToSavedList, deleteFromSavedList]}
-              />
-            )}
-          />
+          <Route exact path="/movies">
+            <MovieList movies={movies} />
+          </Route>
+          <Route path="/movies/:id">
+            <Movie
+              movies={movies}
+              handleList={[savedList, addToSavedList, deleteFromSavedList]}
+            />
+          </Route>
           <Redirect to="/movies" />
         </Switch>
       </main>
