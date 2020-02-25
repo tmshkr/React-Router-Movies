@@ -18,8 +18,8 @@ function App() {
   return (
     <Router>
       <NavBar />
+      <SavedList list={savedList} />
       <main className="main">
-        <SavedList list={savedList} />
         <Route exact path="/" component={MovieList} />
         <Route
           path="/movies/:id"

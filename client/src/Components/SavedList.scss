@@ -1,4 +1,15 @@
 .saved-list {
   color: #fff;
   padding: 1rem;
+  position: fixed;
+  top: 5rem;
+  // display: inline-block;
+  width: 420px;
+  a,
+  a:hover {
+    color: cyan;
+  }
+  // @media (max-width: 900px) {
+  //   width: 20%;
+  // }
 }

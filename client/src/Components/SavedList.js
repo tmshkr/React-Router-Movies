@@ -1,11 +1,9 @@
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import movies from "../data/movies";
 import "./SavedList.scss";
 
 function SavedList(props) {
-  const history = useHistory();
-
   return (
     <div className="saved-list">
       <h3>Saved Movies</h3>

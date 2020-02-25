@@ -24,7 +24,9 @@ function MovieCard(props) {
         <h3>{Title}</h3>
       </div>
       <div>
-        <img src={Poster} alt={Title} />
+        <div className="img-wrapper">
+          <img src={Poster} alt={Title} />
+        </div>
         <div className="movie-info">
           <div className="movie-director">
             Director: <em>{Director}</em>
