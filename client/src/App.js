@@ -1,10 +1,17 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import Tabs from "./components/Tabs";
 import SavedList from "./components/SavedList";
 import MovieList from "./components/MovieList";
 import Movie from "./components/Movie";
+import key from "./config";
 import "./App.scss";
 
 function App() {
@@ -16,20 +23,30 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const url = `https://www.omdbapi.com/?i=tt0076759&apikey=${key}`;
+    axios.get(url).then(response => console.log(response));
+  }, []);
+
   return (
     <Router>
       <SearchBar />
       <Tabs />
       <main className="main">
-        <Route exact path="/" component={MovieList} />
-        <Route
-          path="/saved"
-          render={props => <SavedList {...props} list={savedList} />}
-        />
-        <Route
-          path="/movies/:id"
-          render={props => <Movie {...props} addToSavedList={addToSavedList} />}
-        />
+        <Switch>
+          <Route
+            path="/saved"
+            render={props => <SavedList {...props} list={savedList} />}
+          />
+          <Route exact path="/movies" component={MovieList} />
+          <Route
+            path="/movies/:id"
+            render={props => (
+              <Movie {...props} addToSavedList={addToSavedList} />
+            )}
+          />
+          <Redirect to="/movies" />
+        </Switch>
       </main>
     </Router>
   );
