@@ -3,15 +3,11 @@ import { Card } from "reactstrap";
 import "./MovieCard.scss";
 
 function MovieCard(props) {
-  const {
-    imdbID,
-    Title,
-    Director,
-    imdbRating,
-    Actors,
-    Poster,
-    Plot
-  } = props.movie;
+  const { movie, handleList } = props;
+  const [savedList, addToSavedList, deleteFromSavedList] = handleList;
+  const { imdbID, Title, Director, imdbRating, Actors, Poster, Plot } = movie;
+
+  const isSaved = savedList.includes(imdbID);
 
   return (
     <div className="movie-card">
@@ -33,13 +29,23 @@ function MovieCard(props) {
           <p>{Actors}</p>
           <h4>Plot</h4>
           <p>{Plot}</p>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => props.addToSavedList(imdbID)}
-          >
-            Save
-          </button>
+          {isSaved ? (
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => deleteFromSavedList(imdbID)}
+            >
+              Saved
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => addToSavedList(imdbID)}
+            >
+              Save
+            </button>
+          )}
         </div>
       </div>
     </div>

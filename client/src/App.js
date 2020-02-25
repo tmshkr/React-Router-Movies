@@ -14,35 +14,71 @@ import Movie from "./components/Movie";
 import key from "./config";
 import "./App.scss";
 
+const movieList = [
+  "tt0068646",
+  "tt0076759",
+  "tt0120737",
+  "tt0103064",
+  "tt0082971",
+  "tt0108358",
+  "tt0062622",
+  "tt0107048",
+  "tt0071853"
+];
+
 function App() {
   const [savedList, setSavedList] = useState([]);
+  const [movies, setMovies] = useState({});
 
-  const addToSavedList = title => {
-    if (!savedList.includes(title)) {
-      setSavedList([...savedList, title]);
+  const addToSavedList = id => {
+    if (!savedList.includes(id)) {
+      setSavedList([...savedList, id]);
     }
   };
 
+  const deleteFromSavedList = id => {
+    const filtered = [...savedList].filter(el => el !== id);
+    setSavedList(filtered);
+  };
+
   useEffect(() => {
-    const url = `https://www.omdbapi.com/?i=tt0076759&apikey=${key}`;
-    axios.get(url).then(response => console.log(response));
+    const movies = {};
+    movieList.forEach(id => {
+      const url = `https://www.omdbapi.com/?i=${id}&apikey=${key}`;
+      return axios.get(url).then(({ data }) => {
+        movies[data.imdbID] = data;
+        if (Object.keys(movies).length === movieList.length) {
+          setMovies(movies);
+        }
+      });
+    });
   }, []);
 
   return (
     <Router>
       <SearchBar />
-      <Tabs />
       <main className="main">
+        <Tabs />
         <Switch>
           <Route
             path="/saved"
-            render={props => <SavedList {...props} list={savedList} />}
+            render={props => (
+              <SavedList {...props} movies={movies} savedList={savedList} />
+            )}
           />
-          <Route exact path="/movies" component={MovieList} />
+          <Route
+            exact
+            path="/movies"
+            render={props => <MovieList {...props} movies={movies} />}
+          />
           <Route
             path="/movies/:id"
             render={props => (
-              <Movie {...props} addToSavedList={addToSavedList} />
+              <Movie
+                {...props}
+                movies={movies}
+                handleList={[savedList, addToSavedList, deleteFromSavedList]}
+              />
             )}
           />
           <Redirect to="/movies" />
