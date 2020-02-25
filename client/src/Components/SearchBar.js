@@ -1,21 +1,11 @@
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButtonDropdown,
-  Input,
-  Button,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap";
-import "./NavBar.scss";
+import { Link } from "react-router-dom";
+import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
+import "./SearchBar.scss";
 
-function NavBar(props) {
-  const history = useHistory();
+function SearchBar() {
   return (
-    <header id="navbar">
+    <header id="searchbar">
       <nav>
         <Link to="/">
           <h1 className="title">OMDb Explorer</h1>
@@ -31,4 +21,4 @@ function NavBar(props) {
   );
 }
 
-export default NavBar;
+export default SearchBar;

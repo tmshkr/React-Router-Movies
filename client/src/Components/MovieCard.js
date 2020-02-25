@@ -27,7 +27,7 @@ function MovieCard(props) {
             Director: <em>{Director}</em>
           </div>
           <div className="movie-metascore">
-            imdbRating: <strong>{imdbRating}</strong>
+            IMDB Rating: <strong>{imdbRating}</strong>
           </div>
           <h4>Actors</h4>
           <p>{Actors}</p>
