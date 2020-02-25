@@ -63,21 +63,12 @@ function App() {
       <main className="main">
         <Tabs />
         <Switch>
-          <Route
-            path="/saved"
-            render={props => (
-              <SavedList {...props} movies={movies} savedList={savedList} />
-            )}
-          />
-          <Route
-            exact
-            path="/search"
-            render={props => <SearchResults {...props} movies={movies} />}
-          />
-          <Route
-            path="/search?:query"
-            render={props => <SearchResults {...props} movies={movies} />}
-          />
+          <Route path="/saved">
+            <SavedList movies={movies} savedList={savedList} />
+          </Route>
+          <Route path="/search">
+            <SearchResults movies={movies} />}
+          </Route>
           <Route
             exact
             path="/movies"
