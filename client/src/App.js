@@ -6,11 +6,14 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
+
 import SearchBar from "./components/SearchBar";
+import SearchResults from "./components/SearchResults";
 import Tabs from "./components/Tabs";
 import SavedList from "./components/SavedList";
 import MovieList from "./components/MovieList";
 import Movie from "./components/Movie";
+import staticData from "./data/movies";
 import key from "./config";
 import "./App.scss";
 
@@ -28,7 +31,7 @@ const movieList = [
 
 function App() {
   const [savedList, setSavedList] = useState([]);
-  const [movies, setMovies] = useState({});
+  const [movies, setMovies] = useState(staticData);
 
   const addToSavedList = id => {
     if (!savedList.includes(id)) {
@@ -41,18 +44,18 @@ function App() {
     setSavedList(filtered);
   };
 
-  useEffect(() => {
-    const movies = {};
-    movieList.forEach(id => {
-      const url = `https://www.omdbapi.com/?i=${id}&apikey=${key}`;
-      return axios.get(url).then(({ data }) => {
-        movies[data.imdbID] = data;
-        if (Object.keys(movies).length === movieList.length) {
-          setMovies(movies);
-        }
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   const movies = {};
+  //   movieList.forEach(id => {
+  //     const url = `https://www.omdbapi.com/?i=${id}&apikey=${key}`;
+  //     axios.get(url).then(({ data }) => {
+  //       movies[data.imdbID] = data;
+  //       if (Object.keys(movies).length === movieList.length) {
+  //         setMovies(movies);
+  //       }
+  //     });
+  //   });
+  // }, []);
 
   return (
     <Router>
@@ -65,6 +68,15 @@ function App() {
             render={props => (
               <SavedList {...props} movies={movies} savedList={savedList} />
             )}
+          />
+          <Route
+            exact
+            path="/search"
+            render={props => <SearchResults {...props} movies={movies} />}
+          />
+          <Route
+            path="/search?:query"
+            render={props => <SearchResults {...props} movies={movies} />}
           />
           <Route
             exact
