@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,25 +12,12 @@ import Tabs from "./components/Tabs";
 import SavedList from "./components/SavedList";
 import MovieList from "./components/MovieList";
 import Movie from "./components/Movie";
-import staticData from "./data/movies";
-import key from "./config";
+import initialData from "./data/movies";
 import "./App.scss";
-
-const movieList = [
-  "tt0068646",
-  "tt0076759",
-  "tt0120737",
-  "tt0103064",
-  "tt0082971",
-  "tt0108358",
-  "tt0062622",
-  "tt0107048",
-  "tt0071853"
-];
 
 function App() {
   const [savedList, setSavedList] = useState([]);
-  const [movies, setMovies] = useState(staticData);
+  const [movies, setMovies] = useState(initialData);
 
   const addToSavedList = id => {
     if (!savedList.includes(id)) {
@@ -43,19 +29,6 @@ function App() {
     const filtered = [...savedList].filter(el => el !== id);
     setSavedList(filtered);
   };
-
-  // useEffect(() => {
-  //   const movies = {};
-  //   movieList.forEach(id => {
-  //     const url = `https://www.omdbapi.com/?i=${id}&apikey=${key}`;
-  //     axios.get(url).then(({ data }) => {
-  //       movies[data.imdbID] = data;
-  //       if (Object.keys(movies).length === movieList.length) {
-  //         setMovies(movies);
-  //       }
-  //     });
-  //   });
-  // }, []);
 
   return (
     <Router>
