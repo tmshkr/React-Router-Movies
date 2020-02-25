@@ -74,7 +74,7 @@ function App() {
           </Route>
           <Route path="/movies/:id">
             <Movie
-              movies={movies}
+              handleMovies={[movies, setMovies]}
               handleList={[savedList, addToSavedList, deleteFromSavedList]}
             />
           </Route>

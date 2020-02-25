@@ -1,20 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouteMatch } from "react-router-dom";
-import MovieCard from "./MovieCard";
 import { Alert } from "reactstrap";
+import key from "../config";
+import MovieCard from "./MovieCard";
 
 function Movie(props) {
   const match = useRouteMatch();
-  const { movies } = props;
-  console.log(match);
-  let movie = movies[match.params.id];
+  const { id } = match.params;
+  const { handleList, handleMovies } = props;
+  const [movies, setMovies] = handleMovies;
+  const [error, setError] = useState("");
+  const movie = movies[id];
 
-  if (!movie) {
-    return <Alert color="danger">Movie not found</Alert>;
+  useEffect(() => {
+    if (!movie) {
+      const url = `https://www.omdbapi.com/?i=${id}&apikey=${key}`;
+      axios.get(url).then(({ data }) => {
+        if (data.Error) {
+          return setError(data.Error);
+        }
+        const copy = { ...movies };
+        copy[id] = data;
+        setMovies(copy);
+      });
+    }
+  }, []);
+
+  if (error) {
+    return <Alert color="warning">{error}</Alert>;
+  } else if (!movie) {
+    return <Alert color="secondary">Loading...</Alert>;
   }
 
-  return <MovieCard {...props} movie={movie} />;
+  return <MovieCard movie={movie} handleList={handleList} />;
 }
 
 export default Movie;
