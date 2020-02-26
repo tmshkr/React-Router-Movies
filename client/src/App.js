@@ -26,11 +26,13 @@ function App() {
   };
 
   const deleteFromSavedList = id => {
-    const filtered = [...savedList].filter(el => el !== id);
+    const filtered = savedList.filter(el => el !== id);
     setSavedList(filtered);
   };
 
   return (
+    // basename for deploy
+    // <Router basename="/React-Router-Movies">
     <Router>
       <SearchBar />
       <main className="main">
