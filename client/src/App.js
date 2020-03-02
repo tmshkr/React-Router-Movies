@@ -1,20 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 
-import SavedList from './Movies/SavedList';
+import SearchBar from "./components/SearchBar";
+import SearchResults from "./components/SearchResults";
+import Tabs from "./components/Tabs";
+import SavedList from "./components/SavedList";
+import MovieList from "./components/MovieList";
+import Movie from "./components/Movie";
+import initialData from "./data/movies";
+import "./App.scss";
 
-const App = () => {
-  const [savedList, setSavedList] = useState( [] );
+function App() {
+  const [savedList, setSavedList] = useState([]);
+  const [movies, setMovies] = useState(initialData);
 
-  const addToSavedList = movie => {
-    setSavedList( [...savedList, movie] );
+  const addToSavedList = id => {
+    if (!savedList.includes(id)) {
+      setSavedList([...savedList, id]);
+    }
+  };
+
+  const deleteFromSavedList = id => {
+    const filtered = savedList.filter(el => el !== id);
+    setSavedList(filtered);
   };
 
   return (
-    <div>
-      <SavedList list={savedList} />
-      <div>Replace this Div with your Routes</div>
-    </div>
+    // basename for deploy
+    // <Router basename="/React-Router-Movies">
+    <Router>
+      <SearchBar />
+      <main className="main">
+        <Tabs />
+        <Switch>
+          <Route path="/saved">
+            <SavedList movies={movies} savedList={savedList} />
+          </Route>
+          <Route path={["/search/:term/:page", "/search/:term", "/search"]}>
+            <SearchResults />
+          </Route>
+          <Route exact path="/movies">
+            <MovieList movies={movies} />
+          </Route>
+          <Route path="/movies/:id">
+            <Movie
+              handleMovies={[movies, setMovies]}
+              handleList={[savedList, addToSavedList, deleteFromSavedList]}
+            />
+          </Route>
+          <Redirect to="/movies" />
+        </Switch>
+      </main>
+    </Router>
   );
-};
+}
 
 export default App;
